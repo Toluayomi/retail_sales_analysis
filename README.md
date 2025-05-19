@@ -209,7 +209,9 @@ This project is designed to explore and analyse the retail sales data. It involv
   GROUP BY shift_period
   ORDER BY total_orders DESC;
 ```
-**end of project**
+### Findings
+
+-**Customer Demographics**: 
 
 
 
