@@ -1,16 +1,23 @@
 # Retail_Sales_Analysis SQL Project
 
+# Table of Content
+- [Project Overview](project-overview)
+- [Data Structure](data-structure)
+- [Data Cleaning and Exploration](data-cleaning-and-exploration)
+
 ## Project Overview
 ### Project Title - Retail Sales Analysis
 This project is designed to explore and analyse the retail sales data. It involved setting up a retail sales database, performance of exploratory data analysis (EDA), and provision of insights into specific business questions through SQL queries. 
+
 ### Objectives
-1. To populate retail sales database with the company's sales data
-2. Perform exploratory data analysis to understand the dataset.
-3. To derive insights from the sales data to enhance business growth and executive decision making. These include customer demographics, periodic sales, top performing products etc.
-### Data Structure
-1. Database Setup
-   a. Database Creation - The project commenced with the creation of a database named retail_sales_db.
-   b. Table Creation - A table named sales_details was created to store the sales data. The table columns includes transaction_id, sale_date, sale_time, customer_id, gender, age, product_category, quantity_sold, price_per_unit, cost_of_goods_sold (cogs), and total_sale.
+- To populate retail sales database with the company's sales data
+- Perform exploratory data analysis to understand the dataset.
+- To derive insights from the sales data to enhance business growth and executive decision making. These include customer demographics, periodic sales, top performing products etc.
+   
+## Data Structure
+- Database Setup
+   - Database Creation - The project commenced with the creation of a database named retail_sales_db.
+   - Table Creation - A table named sales_details was created to store the sales data. The table columns includes transaction_id, sale_date, sale_time, customer_id, gender, age, product_category, quantity_sold, price_per_unit, cost_of_goods_sold (cogs), and total_sale.
 
 **Database Creation**
 ```
@@ -33,7 +40,8 @@ This project is designed to explore and analyse the retail sales data. It involv
          );
 ```
 
-### Data Cleaning & Exploration
+## Data Cleaning & Exploration
+
 **Record Count**: Determined the total number of records in the dataset.
 **Customer Count**: Identified the unique customers in the dataset.
 **Category Count**: Identified the unique product categories in the dataset.
@@ -76,34 +84,35 @@ This project is designed to explore and analyse the retail sales data. It involv
   OR cogs IS NULL
   OR total_sale IS NULL;
 ```
-### Data Analysis & Findings
+## Data Analysis & Findings
+
 #### The followings sql queries were developed to answer specific business questions:
 
- 1. **total sales**:
+ - **Total sales**:
 ```sql
     SELECT COUNT (*) FROM sales_details;
 ```
-  2. **numbers of customers**
+  - **numbers of customers**
 ```sql
     SELECT COUNT (DISTINCT customer_id) as total_customers
     FROM sales_details;
 ```
-3. **numbers of categories**
+- **Numbers of categories**
 ```sql
     SELECT COUNT (DISTINCT category) as total_category
     FROM sales_details;
 ```
-4. **lists of categories**
+- **Lists of categories**
 ```sql
    SELECT DISTINCT  category as lists_of_category
     FROM sales_details;
 ```
-5. **total sales made on '2022-11-05'**
+- **Total sales made on '2022-11-05'**
 ```sql 
     SELECT * FROM sales_details
     WHERE sale_date ='2022-11-05';
 ```
-6. **transactions more than 4 made from clothing category in the month of       november, and calculate the total**
+- **Transactions more than 4 made from clothing category in the month of november, and calculate the total**
 ```sql
     SELECT * FROM sales_details
 	  WHERE category ='Clothing'
@@ -120,7 +129,7 @@ This project is designed to explore and analyse the retail sales data. It involv
 	  sale_date between '2022-11-01' AND '2022-11-30'
 	  AND quantity >=4;
 ```
-7. **calculate the total orders and total sales for each category**
+- **Calculate the total orders and total sales for each category**
 ```sql
    SELECT 
 	  category,
@@ -129,20 +138,20 @@ This project is designed to explore and analyse the retail sales data. It involv
 	  FROM sales_details
 	  GROUP BY category;
 ```
-8. **find the average age of customers who purchased items from the beauty category**
+- **Find the average age of customers who purchased items from the beauty category**
 ```sql
    SELECT
   	ROUND(avg(age),2) as avg_age
 	  FROM sales_details
 	  WHERE category = 'Beauty';
 ```
-9. **find all trnasactions where the total_sale is greater than 1000**
+- **Find all trnasactions where the total_sale is greater than 1000**
 ```sql
    SELECT *
 	  FROM sales_details
 	  WHERE total_sale > 1000;
 ```
-10. **total number of transactions made by each gender in each category**
+- **Total number of transactions made by each gender in each category**
 ```sql 
   SELECT 
 	category,
@@ -154,7 +163,7 @@ This project is designed to explore and analyse the retail sales data. It involv
 	ORDER BY
 	category;
 ```
-11. **calculate the average sale for each month, and find out the best selling month in each year**.
+- **Calculate the average sale for each month, and find out the best selling month in each year**.
 ```sql
   SELECT 
 	  year, month, avg_sale
@@ -171,7 +180,7 @@ This project is designed to explore and analyse the retail sales data. It involv
 	  1, 2) as best_performer
 	  WHERE rank = 1;
 ```
-12. **find the top 5 customers based on the highest total sales**
+- **Find the top 5 customers based on the highest total sales**
 ```sql
   SELECT
   customer_id,
@@ -182,7 +191,7 @@ This project is designed to explore and analyse the retail sales data. It involv
   ORDER BY 2 DESC
   LIMIT 5;
 ```
-13. **find the number of unique customers who purchased items from each category**
+- **Find the number of unique customers who purchased items from each category**
 ```sql
   SELECT
   category,
@@ -190,7 +199,7 @@ This project is designed to explore and analyse the retail sales data. It involv
   FROM sales_details
   GROUP BY category;
 ```
-14. **create each shift and number of orders (e.g morning <=12, afternoon between 12 & 17, evening >17)**
+- **Create each shift and number of orders (e.g morning <=12, afternoon between 12 & 17, evening >17)**
 ```sql
   WITH hourly_sale AS
   (
@@ -211,7 +220,7 @@ This project is designed to explore and analyse the retail sales data. It involv
 ```
 ### Findings
 
--**Customer Demographics**: 
+- **Customer Demographics**: 
 
 
 
